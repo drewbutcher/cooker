@@ -1,0 +1,28 @@
+<h1>Test Kitchen Recipe Cook Steps: <a href="{{ url_for('test_kitchen.recipes.show', recipe_id=recipe.id) }}">{{ recipe.title }}</a></h1>
+
+<p>
+    <ul>
+        <li><a href="{{ url_for('test_kitchen.recipes.index') }}">Test Kitchen Recipes</a></li>
+    </ul>
+</p>
+
+<a href="{{ url_for('test_kitchen.recipes.cook_steps.create', recipe_id=recipe.id)}}">New Cook Step</a>
+
+<ol>
+    {% for cook_step in recipe.cook_steps|sort(attribute='sequence') %}
+        <li>
+            <div>
+                <strong>
+                    <a href="{{ url_for('test_kitchen.recipes.cook_steps.show', recipe_id=recipe.id, cook_step_id=cook_step.id) }}">{{ cook_step.title }}</a>
+                </strong>
+                (<a href="{{ url_for('test_kitchen.recipes.cook_steps.edit', recipe_id=recipe.id, cook_step_id=cook_step.id)}}">Edit</a>)
+            </div>
+            <p>{{ cook_step.description }}</p>
+            <ul>
+                <li><a href="{{ url_for('test_kitchen.recipes.cook_steps.tips.index', recipe_id=recipe.id, cook_step_id=cook_step.id)}}">Tips</a>: {{ cook_step.tips|length}}</li>
+            </ul>
+        </li>
+    {% else %}
+        <li>No Cook Steps Yet.</li>
+    {% endfor %}
+</ol>

@@ -1,0 +1,15 @@
+<div>
+    <h1>Recipe: {{recipe.title}}</h1>
+    <p>Author: {% if recipe.author %} {{ recipe.author.username }}{% else %}Unknown{% endif %}</p>
+
+    <h2>Comment:</h2>
+    <p>{{ comment.message }}</p>
+
+    <h4>
+        {% if comment.images|length > 0 %}
+            Images: <a href="{{ url_for('recipes.comments.images.index', recipe_id=recipe.id, comment_id=comment.id) }}">{{ comment.images | length}}</a>
+        {% else %}
+            No images for this comment
+        {% endif %}
+    </h4>
+</div>

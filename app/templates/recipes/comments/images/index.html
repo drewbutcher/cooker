@@ -1,0 +1,10 @@
+<div>
+    <h2>Recipe: {{ recipe.title }}</h2>
+    <h4>Comment: {{ comment.message }}</h4>
+    <h6>Images</h6>
+    <ul>
+        {% for image in images %}
+            <li>{{ image.alt_text }}</li>
+        {% endfor %}
+    </ul>
+</div>

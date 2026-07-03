@@ -1,0 +1,29 @@
+<h1>Test Kitchen Recipe: <a href="{{ url_for('recipes.show', recipe_id=recipe.id) }}">{{ recipe.title }}</a></h1>
+
+<p>
+    <ul>
+        <li><a href="{{ url_for('test_kitchen.recipes.index') }}">Test Kitchen Recipes</a></li>
+    </ul>
+</p>
+
+<p>
+    Author:
+    {% if recipe.author %}
+        {{ recipe.author.username}}
+    {% else %}
+        Unknown
+    {% endif %}
+</p>
+
+<h2>Recipe Structure</h2>
+<a href="{{ url_for('test_kitchen.recipes.edit', recipe_id=recipe.id) }}">Edit</a>
+
+<form method="POST" action="{{ url_for('test_kitchen.recipes.destroy', recipe_id=recipe.id) }}">
+    <button type="submit">Delete Recipe</button>
+</form>
+
+<ul>
+    <li><a href="{{ url_for('test_kitchen.recipes.ingredients.index', recipe_id=recipe.id)}}">Ingredients</a>: {{ recipe.ingredients | length }}</li>
+    <li><a href="{{ url_for('test_kitchen.recipes.cook_steps.index', recipe_id=recipe.id)}}">Cook Steps</a>: {{ recipe.cook_steps | length }}</li>
+    <li><a href="{{ url_for('recipes.comments.index', recipe_id=recipe.id)}}">Comments</a>: {{ recipe.comments | length }}</li>
+</ul>

@@ -1,0 +1,17 @@
+<div>
+    <h1>Recipe: {{ recipe.title }}</h1>
+    <p>
+        <ul>
+            <li>
+                <a href="{{ url_for('recipes.index') }}">Recipes</a>
+            </li>
+        </ul>
+    </p>
+    <p>Author: {%if recipe.author %}{{ recipe.author.username}}{% else %}Unknown{% endif %}</p>
+    <ul>
+        <a href="{{ url_for('recipes.comments.index', recipe_id=recipe.id) }}">comments</a>: {{recipe.comments|length}}
+    </ul>
+
+
+
+</div>

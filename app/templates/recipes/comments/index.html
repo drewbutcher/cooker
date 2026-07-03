@@ -1,0 +1,22 @@
+<div>
+    <h1>Recipe:
+        <a href="{{ url_for('recipes.show', recipe_id=recipe.id) }}"> {{ recipe.title }}</a>
+    </h1>
+    <p>Author: {%if recipe.author %}{{ recipe.author.username}}{% else %}Unknown{% endif %}</p>
+    <h4>comments</h4>
+    <section>
+        {% for comment in comments %}
+            <p>
+                <div>
+                    <a href="{{ url_for('recipes.comments.show', recipe_id=recipe.id, comment_id=comment.id) }}">Comment {{ comment.id }}</a>
+                    {% if comment.author %}: by {{ comment.author.username }} {% endif %}
+                </div>
+                <div>
+                    {{ comment.message }}
+                </div>
+            </p>
+        {% else %}
+            <p>No Comments Yet.</p>
+        {% endfor %}
+    </section>
+</div>

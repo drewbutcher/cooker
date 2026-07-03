@@ -1,0 +1,15 @@
+<h1>Test Kitchen Recipe <a href="{{ url_for('test_kitchen.recipes.show', recipe_id=recipe.id) }}">{{ recipe.title }}</a></h1>
+<h2>Cook Steps: {{ cook_step.title }}</h2>
+
+<p>
+    <ul>
+        <li><a href="{{ url_for('test_kitchen.recipes.cook_steps.index', recipe_id=recipe.id) }}">All Cook Steps</a></li>
+    </ul>
+</p>
+
+<ul>
+    <li>Recipe: {{ recipe.title }}</li>
+    <li>Cook Step: {{ cook_step.title }} (<a href="{{ url_for('test_kitchen.recipes.cook_steps.edit', recipe_id=recipe.id, cook_step_id=cook_step.id)}}">Edit</a>)</li>
+    <li>Description: {{ cook_step.description }}</li>
+    <li><a href="{{ url_for('test_kitchen.recipes.cook_steps.tips.index', recipe_id=recipe.id, cook_step_id=cook_step.id)}}">Tips</a>: {{ cook_step.tips|length}}</li>
+</ul>

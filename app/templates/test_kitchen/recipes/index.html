@@ -1,0 +1,19 @@
+<h1>Test Kitchen Recipes</h1>
+
+<p>
+    <ul>
+        <li><a href="{{ url_for('recipes.index') }}">Recipes</a></li>
+    </ul>
+</p>
+
+<a href="{{ url_for('test_kitchen.recipes.create')}}">New Recipe</a>
+
+<ul>
+    {% for recipe in recipes %}
+        <li>
+            <a href="{{ url_for('test_kitchen.recipes.show', recipe_id=recipe.id) }}">{{ recipe.title }}</a> by {{ recipe.author.username }}
+        </li>
+    {% else %}
+        <li>No Recipes Yet.</li>
+    {% endfor%}
+</ul>

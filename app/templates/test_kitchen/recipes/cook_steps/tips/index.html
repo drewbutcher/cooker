@@ -1,0 +1,21 @@
+<h1>Test Kitchen Recipe: <a href="{{ url_for('test_kitchen.recipes.show', recipe_id=recipe.id) }}">{{ recipe.title }}</a></h1>
+<h2>Cook Step: <a href="{{ url_for('test_kitchen.recipes.cook_steps.show', recipe_id=recipe.id, cook_step_id=cook_step.id) }}">{{ cook_step.title }}</a></h2>
+<h3>Tips</h3>
+
+<p>
+    <ul>
+        <li><a href="{{ url_for('test_kitchen.recipes.cook_steps.index', recipe_id=recipe.id) }}">All Cook Steps</a></li>
+    </ul>
+</p>
+
+<a href="{{ url_for('test_kitchen.recipes.cook_steps.tips.create', recipe_id=recipe.id, cook_step_id=cook_step.id)}}">New Tip</a>
+
+<ul>
+    {% for tip in tips %}
+        <li>
+            <a href="{{ url_for('test_kitchen.recipes.cook_steps.tips.show', recipe_id=recipe.id, cook_step_id=cook_step.id, tip_id=tip.id) }}">{{ tip.description }}</a> (<a href="{{ url_for('test_kitchen.recipes.cook_steps.tips.edit', recipe_id=recipe.id, cook_step_id=cook_step.id, tip_id=tip.id) }}">Edit</a>)
+        </li>
+    {% else %}
+        <li>No Tips Yet.</li>
+    {% endfor %}
+</ul>
